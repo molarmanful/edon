@@ -8,12 +8,24 @@ e.setOptions({
 })
 
 $('#run').click(function(){
+	showLoading()
 	$.get(encodeURI('/eval/'+(e.getValue()||'undefined')),function(x){
+		hideLoading()
 		showDialog({
 			title:'Result',
-			text:'<pre id="res" style="font-family:dvsm">'+x.r+'</pre>',
+			text:'<div id="res" style="font-family:dvsm">'+x.r+'</div>',
 			positive:{
 				title:'Edit'
+			},
+			onLoaded:function(){
+				re=ace.edit('editor')
+				re.getSession().setUseWorker(false)
+				re.setTheme("ace/theme/monokai")
+				re.getSession().setMode("ace/mode/javascript")
+				re.setOptions({
+					fontFamily:'dvsm',
+					fontSize:'13px'
+				})
 			}
 		})
 	})
