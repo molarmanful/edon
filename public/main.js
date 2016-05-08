@@ -18,7 +18,7 @@ $('#run').click(function(){
 				title:'Edit'
 			},
 			onLoaded:function(){
-				re=ace.edit('editor')
+				re=ace.edit('res')
 				re.getSession().setUseWorker(false)
 				re.setTheme("ace/theme/monokai")
 				re.getSession().setMode("ace/mode/javascript")
