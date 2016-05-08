@@ -34,7 +34,7 @@ _eval=x=>{
 app.use(ex.static(__dirname + '/public'))
 app.get('/eval/:x',(x,y)=>{
 	y.setHeader('Content-Type','application/json')
-	y.json({r:ts(_eval(x.params.x))})
+	y.json({r:ts(_eval(decodeURI(x.params.x)))})
 })
 app.listen(process.env.PORT||3000,_=>{
 	console.log('Listening')

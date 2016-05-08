@@ -8,7 +8,7 @@ e.setOptions({
 })
 
 $('#run').click(function(){
-	$.get('/eval/'+$('#editor .ace_content').text(),function(x){
+	$.get(encodeURI('/eval/'+$('#editor .ace_content').text()),function(x){
 		showDialog({
 			title:'Result',
 			text:'<pre id="res" style="font-family:dvsm">'+x.r+'</pre>',
