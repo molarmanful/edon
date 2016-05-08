@@ -19,5 +19,8 @@
   "dependencies": {
     "express": "^4.13.4",
     "tosource": "^1.0.0"
-  }
+	},
+	"engines": {
+		"node": "6.0.0"
+	}
 }
