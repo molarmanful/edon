@@ -13,20 +13,10 @@ $('#run').click(function(){
 		hideLoading()
 		showDialog({
 			title:'Result',
-			text:'<div id="res" style="font-family:dvsm">'+x.r+'</div>',
+			text:'<pre id="res" style="font-family:dvsm">'+x.r+'</pre>',
 			positive:{
 				title:'Edit'
 			},
-			onLoaded:function(){
-				re=ace.edit('res')
-				re.getSession().setUseWorker(false)
-				re.setTheme("ace/theme/monokai")
-				re.getSession().setMode("ace/mode/javascript")
-				re.setOptions({
-					fontFamily:'dvsm',
-					fontSize:'13px'
-				})
-			}
 		})
 	})
 });
