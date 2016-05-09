@@ -28,5 +28,5 @@ $('#github').click(function(){
 		type:'POST',
 		url:'/echo/json/',
 		success:function(){rdr.location}
-	});
-});
+	})
+})
