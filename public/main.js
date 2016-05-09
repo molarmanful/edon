@@ -21,3 +21,12 @@ $('#run').click(function(){
 		})
 	})
 })
+
+$('#github').click(function(){
+	rdr=window.open('https://github.com/molarmanful/edon','_blank');
+	$.ajax({
+		type:'POST',
+		url:'/echo/json/',
+		success:function(){rdr.location}
+	});
+});
