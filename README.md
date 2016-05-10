@@ -21,4 +21,4 @@ Edon is a simple, mobile-friendly Node ES6 environment for the browser. It was m
 ```
 
 # REST API
-Just make a GET request to `https://edonjs.herokuapp.com/eval/[URI-encoded JS here]`. It returns a JSON file with the result.
+Just make a GET request to `https://edon-molarmanful.rhcloud.com/eval/[URI-encoded JS here]`. It returns a JSON file with the result.
