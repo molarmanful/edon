@@ -36,4 +36,4 @@ app.get('/eval/:x',(x,y)=>{
 	y.setHeader('Content-Type','application/json')
 	y.json({r:ts(_eval(decodeURI(x.params.x)))})
 })
-app.listen(process.env.PORT,process.env.IP)
+app.listen(process.env.OPENSHIFT_NODEJS_PORT||8080,process.env.OPENSHIFT_NODEJS_IP||'127.0.0.1')
