@@ -1,5 +1,5 @@
 # edon
-Edon is a simple, mobile-friendly Node ES6 environment for the browser. It was made as a way for me to run ES6 code (esp. code with arrow functions) on my phone without having to use Babel or some other complicated method.
+Edon is a simple, mobile-friendly Node ES6 environment for the browser. It was made as a way for me to run ES6 code (esp. code with arrow functions) on my phone quite conveniently.
 
 # Supported Node Natives
 ```javascript
