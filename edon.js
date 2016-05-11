@@ -31,7 +31,7 @@ _eval=x=>{
 	}catch(e){return e.toString()}
 }
 
-app.use(ex.static(__dirname + '/public'))
+app.use(ex.static(__dirname+'/public'))
 app.get('/eval/:x',(x,y)=>{
 	y.setHeader('Content-Type','application/json')
 	y.json({r:ts(_eval(decodeURI(x.params.x)))})
