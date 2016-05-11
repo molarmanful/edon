@@ -14,7 +14,7 @@ $('#run').click(function(){
 		hideLoading()
 		showDialog({
 			title:'Result',
-			text:'<pre id="res" style="font-family:dvsm">'+x.r+'</pre>',
+			text:'<pre id="res" style="font-family:dvsm;overflow:auto">'+x.r+'</pre>',
 			positive:{
 				title:'Edit'
 			}
