@@ -9,11 +9,13 @@ StringDecoder=require('string_decoder').StringDecoder
 querystring=require('querystring')
 ex=require('express')
 ts=require('tosource')
+exec=require('child_process').exec
+b=require('babel-core')
 app=ex()
 
-_eval=x=>{
+_eval=(x,z)=>{
 	try{
-		return vm.runInNewContext(x,{
+		z(vm.runInNewContext(x,{
 			Buffer:Buffer,
 			clearImmediate:clearImmediate,
 			clearInterval:clearInterval,
@@ -27,13 +29,33 @@ _eval=x=>{
 			StringDecoder:StringDecoder,
 			url:url,
 			vm:vm
-		},{timeout:1000})
-	}catch(e){return e.toString()}
+		},{timeout:1000}))
+	}catch(e){
+			try{
+				z(vm.runInNewContext(b.transform(x,{presets:['stage-0']}).code,{
+					Buffer:Buffer,
+					clearImmediate:clearImmediate,
+					clearInterval:clearInterval,
+					clearTimeout:clearTimeout,
+					setImmediate:setImmediate,
+					setTimeout:setTimeout,
+					setInterval:setInterval,
+					crypto:crypto,
+					punycode:punycode,
+					querystring:querystring,
+					StringDecoder:StringDecoder,
+					url:url,
+					vm:vm
+				},{timeout:1000}))
+			}catch(E){z(E.toString())}
+	}
 }
 
 app.use(ex.static(__dirname+'/public'))
 app.get('/eval/:x',(x,y)=>{
-	y.setHeader('Content-Type','application/json')
-	y.json({r:ts(_eval(decodeURI(x.params.x)))})
+	_eval(decodeURI(x.params.x),o=>{
+		y.setHeader('Content-Type','application/json')
+		y.json({r:ts(o)})
+	})
 })
 app.listen(process.env.OPENSHIFT_NODEJS_PORT||8080,process.env.OPENSHIFT_NODEJS_IP||'127.0.0.1')

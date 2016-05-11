@@ -19,6 +19,8 @@ Edon is a simple, mobile-friendly Node ES6 environment for the browser. It was m
 	vm:vm
 }
 ```
+# ESNext
+Edon has limited support for ESNext features through Babel's `stage-0` preset. However, this means that the code will be transpiled before being executed, which may change some end behavior.
 
 # REST API
 Just make a GET request to `https://edon-molarmanful.rhcloud.com/eval/[URI-encoded JS here]`. It returns a JSON file with the result.

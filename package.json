@@ -4,7 +4,7 @@
   "description": "A mobile-friendly Node.JS IDE.",
   "main": "edon.js",
   "scripts": {
-    "start":"node edon.js"
+    "start": "node edon.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/molarmanful/edon#readme",
   "dependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-core": "^6.8.0",
+    "babel-preset-stage-0": "^6.5.0",
     "express": "^4.13.4",
     "tosource": "^1.0.0"
-	},
-	"engines": {
-		"node": "6.1.0"
-	},
-	"main":"edon.js"
+  },
+  "engines": {
+    "node": "6.1.0"
+  }
 }
