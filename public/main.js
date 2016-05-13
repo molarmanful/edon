@@ -10,7 +10,7 @@ e.setOptions({
 
 $('#run').click(function(){
 	showLoading()
-	$.get(encodeURI('/eval/'+(e.getValue()||'undefined')),function(x){
+	$.get(encodeURIComponent('/eval/'+(e.getValue()||'undefined')),function(x){
 		hideLoading()
 		showDialog({
 			title:'Result',
