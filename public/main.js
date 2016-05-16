@@ -16,7 +16,7 @@ e.setOptions({
 
 $('#run').click(function(){
 	showLoading()
-	$.get('/eval/'+btoa(escape(encodeURIComponent(String.fromCharCode(...LZW.compress(e.getValue())))))),function(x){
+	$.get('/eval/'+btoa(escape(encodeURIComponent(String.fromCharCode(...LZW.compress(e.getValue()))))),function(x){
 		hideLoading()
 		showDialog({
 			title:'Result',
