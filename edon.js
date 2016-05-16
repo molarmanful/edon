@@ -1,3 +1,5 @@
+LZW={compress:function(r,o,f,n,e,s,t,u){for(o={},f=n=256;n--;)o[String.fromCharCode(n)]=n;for(e=s=[];t=r[++n];)e=o[u=e+t]?u:(s.push(o[e]),o[u]=f++,t);return s.push(o[e]),s},decompress:function(r,o,f,n,e,s,t,u){for(o=[],f=n=256,e=String.fromCharCode;n--;)o[n]=e(n);for(e=s=e(r[n=0]);(u=r[++n])<=f;)t=o[u]||e+e[0],o[f++]=e+t[0],s+=e=t;return s}};
+
 h=require('http')
 fs=require('fs')
 vm=require('vm')
@@ -53,7 +55,7 @@ _eval=(x,z)=>{
 
 app.use(ex.static(__dirname+'/public'))
 app.get('/eval/:x',(x,y)=>{
-	_eval(decodeURIComponent(unescape(Buffer(x.params.x,'base64').toString())),o=>{
+	_eval(LZW.decompress([...decodeURIComponent(unescape(Buffer(x.params.x,'base64').toString()))].map(i=>i.charCodeAt())),o=>{
 		y.setHeader('Content-Type','application/json')
 		y.json({r:ts(o)})
 	})
