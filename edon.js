@@ -53,7 +53,7 @@ _eval=(x,z)=>{
 
 app.use(ex.static(__dirname+'/public'))
 app.get('/eval/:x',(x,y)=>{
-	_eval(String.fromCharCode(...x.params.x.match(/..../g).map(x=>+`0x${x}`)),o=>{
+	_eval(decodeURIComponent(unescape(Buffer(x.params.x,'base64').toString())),o=>{
 		y.setHeader('Content-Type','application/json')
 		y.json({r:ts(o)})
 	})

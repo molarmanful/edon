@@ -14,7 +14,7 @@ e.setOptions({
 
 $('#run').click(function(){
 	showLoading()
-	$.get('/eval/'+(e.getValue()||'undefined').split('').map(function(x){return ('0000'+x.charCodeAt().toString(16)).slice(-4)}).join``,function(x){
+	$.get('/eval/'+btoa(escape(encodeURIComponent(e.getValue()))),function(x){
 		hideLoading()
 		showDialog({
 			title:'Result',
