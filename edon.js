@@ -14,6 +14,7 @@ ts=require('tosource')
 exec=require('child_process').exec
 b=require('babel-core')
 app=ex()
+s=require('socket.io')(H=h.Server(app))
 
 _eval=(x,z)=>{
 	try{
@@ -53,12 +54,22 @@ _eval=(x,z)=>{
 	}
 }
 
-app.use(ex.static(__dirname+'/public'))
+app.get('/',(x,y)=>{
+  y.sendFile(__dirname+'/index.html')
+})
 app.get('/eval/:x',(x,y)=>{
 	_eval(LZW.decompress([...decodeURIComponent(unescape(Buffer(x.params.x,'base64').toString()))].map(i=>i.charCodeAt())),o=>{
 		y.setHeader('Content-Type','application/json')
 		y.json({r:ts(o)})
 	})
 })
-app.listen(process.env.OPENSHIFT_NODEJS_PORT||8080,process.env.OPENSHIFT_NODEJS_IP||'127.0.0.1')
+s.on('connection',i=>{
+  i.on('eval',x=>{
+    _eval(x,o=>{
+      i.emit('res',ts(o))
+    })
+  })
+})
+
+H.listen(process.env.OPENSHIFT_NODEJS_PORT||8080,process.env.OPENSHIFT_NODEJS_IP||'127.0.0.1')
 console.log(process.env.OPENSHIFT_NODEJS_VERSION_URL)

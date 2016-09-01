@@ -21,6 +21,7 @@
     "babel-core": "^6.8.0",
     "babel-preset-stage-0": "^6.5.0",
     "express": "^4.13.4",
+    "socket.io": "^1.4.8",
     "tosource": "^1.0.0"
   },
   "engines": {
