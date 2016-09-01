@@ -55,7 +55,7 @@ _eval=(x,z)=>{
 }
 
 app.get('/',(x,y)=>{
-  y.sendFile(__dirname+'/index.html')
+  y.sendFile(__dirname+'/index.html') 
 })
 app.get('/eval/:x',(x,y)=>{
 	_eval(LZW.decompress([...decodeURIComponent(unescape(Buffer(x.params.x,'base64').toString()))].map(i=>i.charCodeAt())),o=>{
